@@ -39,6 +39,9 @@ brew "postgresql-common"
 brew "postgresql@17"
 brew "postgresql@14"
 
+# Redis
+brew "redis"
+
 # Tmux
 brew "reattach-to-user-namespace"
 brew "tmux"
