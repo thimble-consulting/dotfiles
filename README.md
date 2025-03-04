@@ -1,55 +1,66 @@
 # .files
 
-These are my dotfiles. Take anything you want, but at your own risk.
+This is the computer setup / dotfiles repo for Thimble!
 
-It mainly targets macOS systems (should install on e.g. Ubuntu as well for many tools, config and aliases etc).
-
-## Highlights
-
-- Minimal efforts to install everything, using a [Makefile](./Makefile)
-- Mostly based around Homebrew, Caskroom and Node.js, latest Bash + GNU Utils
-- Fast and colored prompt
-- Updated macOS defaults
-- Well-organized and easy to customize
-- The installation and runcom setup is
-  [tested weekly on real Ubuntu and macOS machines](https://github.com/webpro/dotfiles/actions)
-  (Ventura/13, Sonomo/14, Sequoia/15) using [a GitHub Action](./.github/workflows/dotfiles-installation.yml)
-- Supports both Apple Silicon (M1) and Intel chips
+It was forked from https://github.com/webpro/dotfiles to give us a setup to our computers that would be scripted and standardized.
 
 ## Packages Overview
 
-- [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
-- [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
-- [Node.js + npm LTS](https://nodejs.org/en/download/) (packages: [npmfile](./install/npmfile))
-- Latest Git, Bash, Python, GNU coreutils, curl, Ruby
-- `$EDITOR` is [GNU nano](https://www.nano-editor.org) (`$VISUAL` is `code` and Git `core.editor` is `code --wait`)
+- The repo uses [Homebrew](https://brew.sh) to install many (packages: [Brewfile](./install/Brewfile))
+- [homebrew-cask](https://github.com/Homebrew/homebrew-cask) to install many (apps: [Caskfile](./install/Caskfile))
+- [Mise](https://nodejs.org/en/download/), where possible, for languages and libraries like ruby, pnpm, etc.
+
+A default installation using this includes:
+
+- Ruby, Python, NodeJS all installed
+- Postgres (with a setup for managing multiple postgres versions)
+- Redis
+- iTerm2 as a suggested terminal app
 
 ## Installation
 
-On a sparkling fresh installation of macOS:
+### Software Updates & Pre-Install Settings
+
+On a sparkling fresh installation of macOS, first install software updates and developer tools. The Xcode Command Line Tools includes `git` and `make` (not available on stock macOS).
 
 ```bash
 sudo softwareupdate -i -a
 xcode-select --install
 ```
 
-The Xcode Command Line Tools includes `git` and `make` (not available on stock macOS). Now there are two options:
+Then [add a new ssh-key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key) to your machine, and your Github account.
 
-1. Install this repo with `curl` available:
-
-```bash
-bash -c "`curl -fsSL https://raw.githubusercontent.com/webpro/dotfiles/master/remote-install.sh`"
-```
-
-This will clone or download this repo to `~/.dotfiles` (depending on the availability of `git`, `curl` or `wget`).
-
-1. Alternatively, clone manually into the desired location:
+Clone the dotfiles onto the machine:
 
 ```bash
-git clone https://github.com/webpro/dotfiles.git ~/.dotfiles
+git clone git@github.com:thimble-consulting/dotfiles.git ~/.dotfiles
 ```
 
-2. Use the [Makefile](./Makefile) to install the [packages listed above](#packages-overview), and symlink
+Then ensure you update the dotfiles settings to your preferences. At a minimum, we suggest updating in `macos/defaults.sh` the `COMPUTER_NAME` to a preferred name.
+
+```
+COMPUTER_NAME=<switch-from-default>
+```
+
+Some other settings in that file that you may wish to edit include:
+
+```
+LANGUAGES
+LOCALE
+```
+
+And in the `system/.env` file, you may wish to update the default editor (VSCode) and other vars:
+
+```
+export EDITOR="code"
+export VISUAL="code"
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US"
+```
+
+### Running Install
+
+Use the [Makefile](./Makefile) to install the [packages listed above](#packages-overview), and symlink
    [runcom](./runcom) and [config](./config) files (using [stow](https://www.gnu.org/software/stow/)):
 
 ```bash
@@ -60,7 +71,7 @@ make
 Running `make` with the Makefile is idempotent. The installation process in the Makefile is tested on every push and every week in this
 [GitHub Action](https://github.com/webpro/dotfiles/actions). Please file an issue in this repo if there are errors.
 
-## Post-Installation
+### Post-Installation
 
 1. Set your Git credentials:
 
@@ -77,11 +88,21 @@ dot dock
 dot macos
 ```
 
-3. Populate this file with tokens (example: `export GITHUB_TOKEN=abc`):
+3. Start the RectangleApp and check in its settings that it is set to start on login.
 
-```sh
-touch ~/.dotfiles/system/.exports
+4. Start Alfred and check in its settings that it is set to start on login.
+
+## Keeping libraries & settings up to date
+
+The repo uses `topgrade` to run software updates. This is a library that automates checking if other libraries/systems need to be updated, including Homebrew, Mise, MacOS, Visual Studio Code Extensions and more. To run these updates just run:
+
 ```
+topgrade
+```
+
+If/when you make changes to existing dotfiles, check them into git and push them up. We haven't decided on a way to manage the dotfiles as a team - let's explore as we go, with the aim of having the main repo be a common starting point, and individual settings maintained separately. Perhaps we create individual forks off this main repo and merge back in common settings.
+
+If/when you add new configs to your machine, check them into the repo like other dotfiles.
 
 ## The `dot` command
 
