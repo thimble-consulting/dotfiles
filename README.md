@@ -120,6 +120,18 @@ Commands:
    update           Update packages and pkg managers (brew, casks, cargo, pip3, npm, gems, macOS)
 ```
 
+## Notes on Postgres / Redis
+
+To manage Postgres versions, we're using an approach outlined [on this post](https://medium.com/keeping-code/running-multiple-postgresql-versions-simultaneously-on-macos-linux-90b3d7e08ffd).
+
+The main parts to know are:
+
+1. To install a specific version of postgres, add `brew "postgresql@<version-number>"` to the `install/Brewfile` and then run `make`
+2. To create a new cluster of a specific version, run `pg_createcluster <version> <cluster-name>`. A nice default is to name your cluster `main`, e.g. `pg_createcluster <version> main`.
+3. To run commands on a cluster, run `pg_ctlcluster <version> <cluster-name> <cmd>`. To start main on v17, for ex, `pg_ctlcluster 17 main start`.
+
+Redis is installed with Homebrew as well. We recommend not starting redis or postgres at system start, and instead run them when you need to. To run redis, you can just run `redis-server`. Or, to run it in the background, `redis-server &`.
+
 ## Customize
 
 To customize the dotfiles to your likings, fork it and [be the king of your castle!](https://www.webpro.nl/articles/getting-started-with-dotfiles)
