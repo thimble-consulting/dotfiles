@@ -11,6 +11,8 @@ tap "lotyp/homebrew-formulae"
 #    Link: https://medium.com/keeping-code/running-multiple-postgresql-versions-simultaneously-on-macos-linux-90b3d7e08ffd
 tap "petere/postgresql"
 
+brew "direnv"
+
 # core/dotfiles
 brew "bats-core"
 brew "coreutils" # provide cat/ls etc from coreutils instead of macos
