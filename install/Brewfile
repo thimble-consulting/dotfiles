@@ -7,6 +7,9 @@
 
 tap "homebrew/bundle"
 tap "lotyp/homebrew-formulae"
+# Tap petere postgresql to install multiple postgres versions
+#    Link: https://medium.com/keeping-code/running-multiple-postgresql-versions-simultaneously-on-macos-linux-90b3d7e08ffd
+tap "petere/postgresql"
 
 # core/dotfiles
 brew "bats-core"
@@ -30,6 +33,11 @@ brew "grep"
 brew "gnu-sed"
 brew "ripgrep" # regex-based search via rg, super fast
 brew "the_silver_searcher" # search via ag <search-term>
+
+# Postgres
+brew "postgresql-common"
+brew "postgresql@17"
+brew "postgresql@14"
 
 # Tmux
 brew "reattach-to-user-namespace"
