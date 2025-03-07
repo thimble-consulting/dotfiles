@@ -75,7 +75,7 @@ git: brew
 	brew install git git-extras
 
 mise: brew link
-	brew install mise
+	brew install mise libyaml
 	mise install
 
 brew-packages: brew
