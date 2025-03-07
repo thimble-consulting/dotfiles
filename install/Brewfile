@@ -15,6 +15,7 @@ brew "direnv"
 
 # core/dotfiles
 brew "bats-core"
+brew "cmake" # for neovim telescope/fzf integration
 brew "coreutils" # provide cat/ls etc from coreutils instead of macos
 brew "duti" # set default app for filetype; see install/duti
 brew "lotyp/formulae/dockutil" # configure mac dock, see macos/dock
