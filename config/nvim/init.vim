@@ -2,7 +2,7 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 " instead of having an init.lua
 lua require('config')
-source ~/.vimrc
+source ~/.config/vim/.vimrc
 " disable cursor shaping (make it square)
 "
 lua vim.cmd("set signcolumn=yes:1")
