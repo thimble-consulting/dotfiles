@@ -92,6 +92,11 @@ dot macos
 
 4. Start Alfred and check in its settings that it is set to start on login.
 
+5. [Optional] Change the mac Cmd-Space Keyboard Shortcut to open Alfred instead of Spotlight
+
+  i. First, go to System Settings > Keyboard > Keyboard Shortcuts > Spotlight and disable the Cmd-Space setting
+  ii. Then, in Alfred, set the shortcut to Cmd-Space
+
 ## Keeping libraries & settings up to date
 
 The repo uses `topgrade` to run software updates. This is a library that automates checking if other libraries/systems need to be updated, including Homebrew, Mise, MacOS, Visual Studio Code Extensions and more. To run these updates just run:
