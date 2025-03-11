@@ -97,6 +97,10 @@ dot macos
   i. First, go to System Settings > Keyboard > Keyboard Shortcuts > Spotlight and disable the Cmd-Space setting
   ii. Then, in Alfred, set the shortcut to Cmd-Space
 
+6. [Optional] Add some Alfred productivity settings:
+
+  i. One great way to use Alfred for opening often-used things is to enable Web Bookmarks search in Alfred. Go to Alfred Preferences > Features > Web Bookmarks, and enable Alfred to search bookmarks. Then, if you've bookmarked key repos, standup, task boards or other things, you can search for these in alfred and open them from there.
+
 ## Keeping libraries & settings up to date
 
 The repo uses `topgrade` to run software updates. This is a library that automates checking if other libraries/systems need to be updated, including Homebrew, Mise, MacOS, Visual Studio Code Extensions and more. To run these updates just run:
