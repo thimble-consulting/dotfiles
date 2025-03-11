@@ -10,7 +10,6 @@ tap "lotyp/homebrew-formulae"
 # Tap petere postgresql to install multiple postgres versions
 #    Link: https://medium.com/keeping-code/running-multiple-postgresql-versions-simultaneously-on-macos-linux-90b3d7e08ffd
 tap "petere/postgresql"
-tap "thimble-consulting/homebrew-postgresql"
 
 brew "direnv"
 
@@ -40,7 +39,7 @@ brew "the_silver_searcher" # search via ag <search-term>
 
 # Postgres
 brew "petere/postgresql/postgresql-common"
-brew "thimble-consulting/homebrew-postgresql/postgresql@14"
+brew "petere/postgresql/postgresql@14"
 brew "petere/postgresql/postgresql@17"
 
 # Redis
