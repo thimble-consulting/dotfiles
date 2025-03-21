@@ -58,12 +58,12 @@ return {
       local bufopts = { noremap=true, silent=true, buffer=bufnr }
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-      -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
       vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>')
+      -- Alternate way to bring up hover doc: vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
       vim.keymap.set('n', '<Esc>', close_floating)
       vim.keymap.set('n', '<space><space>', close_floating)
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-      vim.keymap.set('n', '<C-K>', vim.lsp.buf.signature_help, bufopts)
+      vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, bufopts)
       vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
       vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
       vim.keymap.set('n', '<space>wl', function()
@@ -117,8 +117,11 @@ return {
     -- end
     -- LSP settings (for overriding per client)
     local handlers =  {
-      ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border}),
-      ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border }),
+      ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, { border = border}),
+      ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = border,
+        close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
+      }),
     }
 
 
