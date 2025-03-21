@@ -18,6 +18,7 @@ brew "bats-core"
 brew "cmake" # for neovim telescope/fzf integration
 brew "coreutils" # provide cat/ls etc from coreutils instead of macos
 brew "duti" # set default app for filetype; see install/duti
+brew "gnupg"
 brew "lotyp/formulae/dockutil" # configure mac dock, see macos/dock
 brew "stow" # installs packages in its own dir and symlink to there
 brew "topgrade"
@@ -56,4 +57,5 @@ brew "nvim"
 
 # Git - other than installed in Make git target
 brew "gh" # Github command line tool
+brew "git-lfs" # Git extension for versioning large files
 brew "git-delta" # nicer syntax highlighting for git diff
