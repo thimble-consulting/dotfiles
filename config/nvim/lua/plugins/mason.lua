@@ -8,8 +8,10 @@ local function close_floating()
   end
 end
 
+
 return {
   "williamboman/mason.nvim",
+  version = "1.11.0", -- short term fix - https://github.com/LazyVim/LazyVim/issues/6039#issuecomment-2856227817
   cond = (function() return not vim.g.vscode end),
   event = "BufReadPost",
   init = function()
@@ -25,7 +27,7 @@ return {
     "MasonLog",
   },
   dependencies = {
-    "williamboman/mason-lspconfig.nvim",
+    { "mason-org/mason-lspconfig.nvim", version = "1.32.0" }, -- short term fix - https://github.com/LazyVim/LazyVim/issues/6039#issuecomment-2856227817
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
     "neovim/nvim-lspconfig",
