@@ -5,3 +5,6 @@ python = "latest"
 ruby = "latest"
 pnpm = "latest"
 rust = { version = "latest", profile = "default" }
+
+[settings]
+experimental = true
