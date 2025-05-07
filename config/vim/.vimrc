@@ -11,8 +11,6 @@ filetype off                  " required
   " Plugin 'numirias/semshi' " better python syntax
 
 " Section: Basic VIM Setup
-  " Remap leader key
-  let mapleader=","
 
   " Make backspace work in insert mode
   set backspace=indent,eol,start
