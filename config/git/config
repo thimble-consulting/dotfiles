@@ -111,3 +111,10 @@
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
+[pull]
+    rebase = false
+    ff = only
+[rerere]
+    enabled = true
+[rebase]
+    autoStash = true
