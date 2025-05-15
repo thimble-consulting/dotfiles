@@ -10,7 +10,12 @@ return {
   "rking/ag.vim",
   "nathangrigg/vim-beancount",
   "roxma/vim-tmux-clipboard",
-  "sbdchd/neoformat",
+  {
+    "sbdchd/neoformat",
+    config = function ()
+      vim.g.neoformat_try_node_exe = 1
+    end
+  },
   "tmux-plugins/vim-tmux-focus-events", -- support for vim-tmux-clipboard
   {
     "scrooloose/nerdtree",
