@@ -43,6 +43,8 @@ brew "petere/postgresql/postgresql-common"
 brew "petere/postgresql/postgresql@14"
 brew "petere/postgresql/postgresql@17"
 
+brew "tmate"
+
 # Redis
 brew "redis"
 
