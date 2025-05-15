@@ -21,7 +21,7 @@ PATH="$DOTFILES_DIR/bin:$PATH"
 
 # Source the dotfiles (order matters)
 
-for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,fzf,grep,mise,direnv,prompt,completion,zoxide}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,fzf,grep,mise,direnv,prompt,completion,tmuxinator,zoxide}; do
   . "$DOTFILE"
 done
 
