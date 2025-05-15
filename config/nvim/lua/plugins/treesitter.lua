@@ -5,7 +5,10 @@ return {
     local configs = require("nvim-treesitter.configs")
     configs.setup({
       ensure_installed = {
+        "awk",
+        "bash",
         "c",
+        "css",
         "lua",
         "vim",
         "vimdoc",
@@ -18,7 +21,9 @@ return {
         "typescript",
         "tsx",
         "ruby",
-        "html"
+        "html",
+        "vim",
+        "vimdoc"
       },
       sync_install = false,
       -- default highlight was true it seems like night-owl theme
