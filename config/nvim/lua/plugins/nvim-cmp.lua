@@ -47,20 +47,19 @@ return {
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         -- ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ['<CR>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            if luasnip.expandable() then
+        ["<CR>"] = cmp.mapping({
+          i = function(fallback)
+            if cmp.visible() and luasnip.expandable() then
               luasnip.expand()
+            elseif cmp.visible() and cmp.get_active_entry() then
+              cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
             else
-              cmp.confirm({
-                select = true,
-              })
+              fallback()
             end
-          else
-            fallback()
-          end
-        end),
-
+          end,
+          s = cmp.mapping.confirm({ select = true }),
+          c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+        }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
