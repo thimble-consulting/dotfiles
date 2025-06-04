@@ -16,7 +16,7 @@
     ignorecase = false
 
 [credential]
-  helper = osxkeychain
+    helper = osxkeychain
 
 [init]
     defaultbranch = main
