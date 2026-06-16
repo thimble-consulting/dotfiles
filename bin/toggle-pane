@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# toggle-pane: Auto-detect pane type and run appropriate toggle command
+
+# Check if we're in a tmux session
+if [ -z "$TMUX" ]; then
+    echo "Error: Not in a tmux session"
+    exit 1
+fi
+
+# Get current pane title
+CURRENT_PANE_TITLE=$(tmux display-message -p "#{pane_title}")
+
+# Check if we're in a Claude pane
+if [ "$CURRENT_PANE_TITLE" = "claude-code" ]; then
+    claude-tmux
+elif [ "$CURRENT_PANE_TITLE" = "terminal" ]; then
+    terminal-tmux
+fi
