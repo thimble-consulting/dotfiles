@@ -4,7 +4,10 @@ node = "latest"
 python = "latest"
 ruby = "latest"
 pnpm = "latest"
+aqua = "latest"
 rust = { version = "latest", profile = "default" }
+go = "latest"
 
 [settings]
 experimental = true
+idiomatic_version_file_enable_tools = ["ruby", "node"]
