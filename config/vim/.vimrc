@@ -21,8 +21,8 @@ filetype off                  " required
   set directory=/tmp/
 
   " paste toggle
-  nnoremap <leader>p :set invpaste paste?<CR>
-  set pastetoggle=<leader>p
+  " nnoremap <leader>p :set invpaste paste?<CR>
+  " set pastetoggle=<leader>p
   set showmode
 
   set secure  " disable unsafe commands in local .vimrc files
@@ -90,6 +90,9 @@ filetype off                  " required
   let NERDTreeQuitOnOpen=1
   let NERDTreeShowHidden=1
   let g:NERDTreeIgnore=['.bundle','.git$','node_modules']
+  " Disable NERDTree's Ctrl-j/k mappings to allow vim-tmux-navigator to work
+  let g:NERDTreeMapJumpNextSibling = '<Nop>'
+  let g:NERDTreeMapJumpPrevSibling = '<Nop>'
   " Toggle NERDTree with <leader>,
   map <silent> <leader>. :execute 'NERDTreeToggle ' . getcwd()<CR>
   " Open current file in nerdtree
@@ -110,6 +113,10 @@ filetype off                  " required
 
 " Section: Lua
   autocmd FileType lua setlocal tabstop=2 softtabstop=2 shiftwidth=2 textwidth=80 smarttab expandtab
+
+" Section: vim-tmux-navigator
+  " Disable netrw workaround to suppress warning
+  let g:tmux_navigator_disable_netrw_workaround = 1
 
 " Section: TMUX & System Clipboard
   set clipboard=unnamed

@@ -1,3 +1,21 @@
+" OSC 52 clipboard support (for containers/SSH where pbcopy isn't available)
+" Must be set BEFORE plugins load
+lua << EOF
+if vim.fn.executable('pbcopy') == 0 and vim.fn.has('nvim-0.10') == 1 then
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+      ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    },
+  }
+end
+EOF
+
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 " instead of having an init.lua
