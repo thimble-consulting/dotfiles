@@ -1,9 +1,10 @@
 return {
   "folke/lazydev.nvim",
   {
-    "ggandor/leap.nvim",
+    url = "https://codeberg.org/andyg/leap.nvim",
     config = function()
-      require('leap').create_default_mappings()
+      vim.keymap.set({'n', 'x', 'o'}, 's',  '<Plug>(leap)')
+      vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
     end
   },
   "prisma/vim-prisma",
@@ -19,7 +20,12 @@ return {
   "tmux-plugins/vim-tmux-focus-events", -- support for vim-tmux-clipboard
   {
     "scrooloose/nerdtree",
-    cond = (function() return not vim.g.vscode end)
+    cond = (function() return not vim.g.vscode end),
+    init = function()
+      -- Disable NERDTree's Ctrl-j/k mappings to allow vim-tmux-navigator to work
+      vim.g.NERDTreeMapJumpNextSibling = '<Nop>'
+      vim.g.NERDTreeMapJumpPrevSibling = '<Nop>'
+    end
   },
   {
     "scrooloose/nerdcommenter",
@@ -35,7 +41,8 @@ return {
   },
   {
     "christoomey/vim-tmux-navigator",
-    cond = (function() return not vim.g.vscode end)
+    cond = (function() return not vim.g.vscode end),
+    lazy = false,  -- Load immediately to ensure keybindings are set
   },
   "rlue/vim-fold-rspec",
   "tpope/vim-endwise",
