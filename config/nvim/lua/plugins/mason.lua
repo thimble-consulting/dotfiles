@@ -119,12 +119,18 @@ return {
     --   return orig_util_open_floating_preview(contents, syntax, opts, ...)
     -- end
     -- LSP settings (for overriding per client)
-    local handlers =  {
-      ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, { border = border}),
-      ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = border,
-        close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
-      }),
+    local handlers = {
+      ["textDocument/hover"] = function(err, result, ctx, config)
+        config = vim.tbl_extend('force', config or {}, { border = border })
+        vim.lsp.handlers.hover(err, result, ctx, config)
+      end,
+      ["textDocument/signatureHelp"] = function(err, result, ctx, config)
+        config = vim.tbl_extend('force', config or {}, {
+          border = border,
+          close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
+        })
+        vim.lsp.handlers.signature_help(err, result, ctx, config)
+      end,
     }
 
 
@@ -139,13 +145,14 @@ return {
 
     mason_lspconfig.setup_handlers {
       function(server_name)
-        require("lspconfig")[server_name].setup {
+        vim.lsp.config(server_name, {
           capabilities = capabilities,
           on_attach = on_attach,
           settings = servers[server_name],
           filetypes = (servers[server_name] or {}).filetypes,
           handlers = handlers,
-        }
+        })
+        vim.lsp.enable(server_name)
       end
     }
 
